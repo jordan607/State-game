@@ -18,7 +18,11 @@ while length > len(hit) :
                                     prompt="Enter  state name").title()
 
     if answer_state == "Exit":
+        missing_states = [states for states in state_list if states not in hit]
+        pandas.DataFrame(missing_states).to_csv("States_to_learn.csv")
+
         break
+
     if answer_state in state_list:
         hit.append(answer_state)
         state_data = data[data.state == answer_state]
